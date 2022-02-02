@@ -1,4 +1,4 @@
-from exercises import (
+from .exercises import (
     HIP_EXTENSION,
     SLDL,
     CABLE_CURL,
@@ -11,7 +11,7 @@ from exercises import (
     MACHINE_PRESS,
     HS_PRESS,
     INCLINE_DB_PRESS,
-    INCLINE_SMITH_BANDED,
+    INCLINE_SMITH_PRESS,
     HACK_SQUAT,
     QUAD_SQUAT,
     LEG_CURL,

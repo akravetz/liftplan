@@ -1,4 +1,8 @@
-from .models import (Exercise,
+from .models import (
+    ExerciseCategory,
+    MuscleGroup,
+    Day,
+    Exercise,
     Intensifier,
     Myorep,
     Dropset,

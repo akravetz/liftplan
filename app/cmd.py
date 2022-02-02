@@ -1,7 +1,7 @@
-from core.program import PPL_V2
+from core.programs import PPL_V2
 
 def main():
-    pass
+    print(PPL_V2)
 
 if __name__ == '__main__':
     main()

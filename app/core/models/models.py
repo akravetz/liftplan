@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
-from abc import ABC
-from enum import Enum
+from abc import ABC, abstractmethod
+from enum import Enum, auto
 
 
 class ExerciseCategory(Enum):
@@ -33,57 +33,62 @@ class Exercise:
     category: ExerciseCategory
 
 
-class Intensifier:
+class Intensifier(ABC):
     @abstractmethod
-    def name():
+    def name(self):
         pass
 
     @abstractmethod
-    def description():
+    def description(self):
         pass
 
 
 @dataclass
 class Myorep(Intensifier):
-    n_myorep_sets: int
-
-    def name():
+    def name(self):
         return "myorep set"
 
-    def description():
-        return f"perform a set to 2-3RIR, then perform {n_myorep_sets} sets of 5 reps with 5 second rest in between.  Once you can no longer perform 5 reps, stop"
+    def description(self):
+        return (
+            "perform a set to 2-3RIR, then perform sets "
+            + "of 5 reps with 5 second rest in between.  " +
+            " Once you can no longer perform 5 reps, stop"
+        )
 
 
 @dataclass
 class Dropset(Intensifier):
     n_drops: int
 
-    def name():
+    def name(self):
         return "drop set"
 
-    def description():
-        return f"perform working set, drop the weight 20% and perform another set to failure.  Do this {n_drops} times."
+    def description(self):
+        return (
+            "perform working set, drop the weight 20%"
+            + f"and perform another set to failure.  Do this {self.n_drops} times."
+        )
 
 
 @dataclass
 class Partial(Intensifier):
     n_reps: int
 
-    def name():
+    def name(self):
         return "partial set"
 
-    def description():
-        return f"perform a set of {n_reps} partials"
+    def description(self):
+        return f"perform a set of {self.n_reps} partials"
 
 
 class IsoHold(Intensifier):
     hold_seconds: int
 
-    def name():
+    def name(self):
         return "isometric hold"
 
-    def description():
-        return f"hold in the eccentric position for {hold_seconds} seconds"
+    def description(self):
+        return f"hold in the eccentric position for {self.hold_seconds} seconds"
 
 
 @dataclass
@@ -99,6 +104,7 @@ class ExerciseProgram:
     sets: list[Set]
 
 
+@dataclass
 class Day:
     name: str
     note: str

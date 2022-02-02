@@ -72,7 +72,7 @@ INCLINE_DB_PRESS = Exercise(
     MuscleGroup.CHEST,
     ExerciseCategory.PRESS,
 )
-INCLINE_SMITH_BANDED = Exercise(
+INCLINE_SMITH_PRESS = Exercise(
     "Press - Incline, Smith (Banded)",
     "http://link.com",
     MuscleGroup.CHEST,
@@ -160,12 +160,20 @@ CABLE_FLY = Exercise(
     "Fly - Roller, Cable", "http://link.com", MuscleGroup.CHEST, ExerciseCategory.FLY
 )
 CABLE_CROSS_EXT = Exercise(
-    "Cross Extension - Seated, Cable", MuscleGroup.ARMS, ExerciseCategory.ARM_EXTENSION
+    "Cross Extension - Seated, Cable",
+    "http://link.com",
+    MuscleGroup.ARMS,
+    ExerciseCategory.ARM_EXTENSION,
 )
-TOE_PRESS = Exercise("Toe Press", MuscleGroup.CALVES, ExerciseCategory.SQUAT)
+TOE_PRESS = Exercise(
+    "Toe Press", "http://link.com", MuscleGroup.CALVES, ExerciseCategory.SQUAT
+)
 SEATED_CALF_RAISE = Exercise(
-    "Calf Raise, Seated", MuscleGroup.CALVES, ExerciseCategory.SQUAT
+    "Calf Raise, Seated", "http://link.com", MuscleGroup.CALVES, ExerciseCategory.SQUAT
 )
 JM_PRESS = Exercise(
-    "JM Press - Smith (Banded)", MuscleGroup.ARMS, ExerciseCategory.ARM_EXTENSION
+    "JM Press - Smith (Banded)",
+    "http://link.com",
+    MuscleGroup.ARMS,
+    ExerciseCategory.ARM_EXTENSION,
 )

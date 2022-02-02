@@ -2,8 +2,10 @@
 
 .PHONY: lint
 lint:
-       pylint
+	@PYTHONPATH=app python -m pylint app/core
 
+run:
+	@PYTHONPATH=app python app/cmd.py
 
 .PHONY: clean
 clean: ## Resets development environment.
