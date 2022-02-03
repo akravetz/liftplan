@@ -21,7 +21,7 @@ CABLE_CURL = Exercise(
 HAMMER_CURL = Exercise(
     "Curl - Hammer, Cable",
     "http://link.com",
-    MuscleGroup.LEGS,
+    MuscleGroup.ARMS,
     ExerciseCategory.SQUAT,
 )
 WRIST_CURL = Exercise(
