@@ -1,8 +1,18 @@
 .DEFAULT_GOAL:=help
 
+.PHONY: update-reqs
+update-reqs:
+	@pip-compile
+	@pip-compile dev-requirements.in
+
+PHONY: deps
+deps:
+	@pip-sync requirements.txt dev-requirements.txt
+
 .PHONY: lint
 lint:
-	@PYTHONPATH=app python -m pylint app/core
+	@-PYTHONPATH=app python -m pylint app/core
+	@-MYPYPATH=app python -m mypy app
 
 run:
 	@PYTHONPATH=app python app/cmd.py

@@ -1,4 +1,5 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from typing import Optional
 from abc import ABC, abstractmethod
 from enum import IntEnum, Enum, auto
 
@@ -24,6 +25,7 @@ class MuscleGroup(IntEnum):
     ARMS = auto()
     ABS = auto()
 
+
 class Finisher(ABC):
     @abstractmethod
     def name(self):
@@ -32,6 +34,7 @@ class Finisher(ABC):
     @abstractmethod
     def description(self):
         pass
+
 
 class Intensifier(ABC):
     @abstractmethod
@@ -43,7 +46,6 @@ class Intensifier(ABC):
         pass
 
 
-
 @dataclass
 class Exercise:
     name: str
@@ -51,11 +53,12 @@ class Exercise:
     muscle_group: MuscleGroup
     category: ExerciseCategory
 
+
 @dataclass
 class Set:
     rep_range_low: int
     rep_range_high: int
-    intensifier: Intensifier = field(default=None)
+    intensifier: Optional[Intensifier] = None
 
 
 @dataclass
@@ -70,7 +73,7 @@ class Day:
     note: str
     day_offset: int  # day 0, 1,...n etc
     exercises: list[ExerciseProgram]
-    finisher: Finisher = field(default=None)
+    finisher: Optional[Finisher] = None
 
 
 @dataclass

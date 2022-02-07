@@ -4,5 +4,9 @@
 #
 #    pip-compile
 #
+jinja2==3.0.3
+    # via -r requirements.in
 markdown2==2.4.2
     # via -r requirements.in
+markupsafe==2.0.1
+    # via jinja2

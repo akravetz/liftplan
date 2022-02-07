@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from .models import Intensifier
 
+
 @dataclass
 class Myorep(Intensifier):
     def name(self):

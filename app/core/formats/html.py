@@ -1,4 +1,3 @@
-import markdown2
 from core import models
 
 
@@ -17,12 +16,13 @@ def generate_set_table(exercises: list[models.ExerciseProgram]) -> str:
             elif isinstance(set_.intensifier, models.Dropset):
                 set_count[musc_group_name] += 1
 
-    # we want to create a table that has two muscle groups per row with a spacing column between them
+    # we want to create a table that has two muscle groups per row with a
+    # spacing column between them
     set_count = {k: v for k, v in set_count.items() if v > 0}
     exercise_count = {k: v for k, v in exercise_count.items() if v > 0}
     table_html = ""
-    for idx, key in enumerate(
-        sorted(set_count.keys(), key=lambda x: models.MuscleGroup.__members__[x])
+    for key in sorted(
+        set_count.keys(), key=lambda x: models.MuscleGroup.__members__[x]
     ):
         muscle_group = key.title()
         table_html = f"""{table_html}
@@ -30,8 +30,8 @@ def generate_set_table(exercises: list[models.ExerciseProgram]) -> str:
               <td>{muscle_group}</td><td>{exercise_count[key]} exercises<td>{set_count[key]} sets</td>
             </tr>
               """
-    total_sets = sum([v for v in set_count.values()])
-    total_exercises = sum([v for v in exercise_count.values()])
+    total_sets = sum(set_count.values())
+    total_exercises = sum(exercise_count.values())
 
     table_html = f"""{table_html}
     <tr>

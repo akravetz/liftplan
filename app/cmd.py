@@ -1,5 +1,5 @@
 from core.programs import PPL_V2
-from core import program_to_html
+from core.formats import program_to_html
 
 
 def main():

@@ -356,7 +356,7 @@ PPL_V2 = models.Program(
                             ],
                         ),
                     ],
-                    models.CalfFinisher,
+                    models.CalfFinisher(),
                 ),
                 D(
                     "Push B",
@@ -389,7 +389,7 @@ PPL_V2 = models.Program(
                             ],
                         ),
                     ],
-                    models.PushDeltFinisher,
+                    models.PushDeltFinisher(),
                 ),
                 D(
                     "Pull B",
@@ -422,7 +422,7 @@ PPL_V2 = models.Program(
                             ],
                         ),
                     ],
-                    models.PullDeltFinisher,
+                    models.PullDeltFinisher(),
                 ),
                 D(
                     "Lower B",
