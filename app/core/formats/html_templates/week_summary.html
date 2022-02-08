@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>testing 123</title>
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+				<p class="h1">{{ block.name }}</p>
+				<p class="h2">Week {{ week_index }} </p>
+      </div>
+      <div class="content">
+        <div class="two-col">
+					{% for day in block.days %}
+						{{ generate_day_table(day) }}
+					{% if loop.index is divisibleby(3) %}
+				</div>
+        <div class="two-col">
+					{% endif %}
+					{% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

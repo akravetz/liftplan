@@ -1,0 +1,16 @@
+          <table class="exercises">
+            <tr>
+							<th colspan="3">{{ day_of_week }}- {{day.name}}</th>
+            </tr>
+						{% for grp in exercise_groups %}
+            <tr>
+							<td>{{ grp['muscle_group'] }}</td>
+							<td>{{ grp['n_exercises'] }} Exercises</td>
+							<td>{{ grp['n_sets'] }} Sets</td>
+            </tr>
+						{% endfor %}
+            <tr>
+							<td colspan="2" class="exercise-summary">{{ total_exercises }} Exercises</td>
+							<td>{{ total_sets }} sets</td>
+            </tr>
+          </table>
