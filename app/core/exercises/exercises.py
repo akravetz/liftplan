@@ -15,19 +15,19 @@ SLDL = Exercise(
 CABLE_CURL = Exercise(
     "Curl - Incline, Cable",
     "http://link.com",
-    MuscleGroup.ARMS,
+    MuscleGroup.BICEPS,
     ExerciseCategory.ARM_CURL,
 )
 HAMMER_CURL = Exercise(
     "Curl - Hammer, Cable",
     "http://link.com",
-    MuscleGroup.ARMS,
+    MuscleGroup.BICEPS,
     ExerciseCategory.SQUAT,
 )
 WRIST_CURL = Exercise(
     "Curl - Wrist, DB",
     "https://exrx.net/WeightExercises/WristFlexors/DBWristCurl",
-    MuscleGroup.ARMS,
+    MuscleGroup.BICEPS,
     ExerciseCategory.ARM_CURL,
 )
 CABLE_REAR_DELT = Exercise(
@@ -162,7 +162,7 @@ CABLE_FLY = Exercise(
 CABLE_CROSS_EXT = Exercise(
     "Cross Extension - Seated, Cable",
     "http://link.com",
-    MuscleGroup.ARMS,
+    MuscleGroup.TRICEPS,
     ExerciseCategory.ARM_EXTENSION,
 )
 TOE_PRESS = Exercise(
@@ -174,6 +174,6 @@ SEATED_CALF_RAISE = Exercise(
 JM_PRESS = Exercise(
     "JM Press - Smith (Banded)",
     "http://link.com",
-    MuscleGroup.ARMS,
+    MuscleGroup.TRICEPS,
     ExerciseCategory.ARM_EXTENSION,
 )

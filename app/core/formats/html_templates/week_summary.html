@@ -12,8 +12,8 @@
       <div class="content">
         <div class="two-col">
 					{% for day in block.days %}
-						{{ generate_day_table(day) }}
-					{% if loop.index is divisibleby(3) %}
+{{ generate_day_table(day) }}
+					{% if loop.index == 3 %}
 				</div>
         <div class="two-col">
 					{% endif %}

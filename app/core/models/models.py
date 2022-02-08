@@ -22,7 +22,8 @@ class MuscleGroup(IntEnum):
     SHOULDERS = auto()
     LEGS = auto()
     CALVES = auto()
-    ARMS = auto()
+    BICEPS = auto()
+    TRICEPS = auto()
     ABS = auto()
 
 
