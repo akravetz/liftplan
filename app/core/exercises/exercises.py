@@ -1,5 +1,11 @@
 from core.models import Exercise, MuscleGroup, ExerciseCategory
 
+BARBELL_HIP_THRUST = Exercise(
+    "Hip Thrust, Barbell",
+    "https://exrx.net/WeightExercises/GluteusMaximus/BBHipThrust",
+    MuscleGroup.LEGS,
+    ExerciseCategory.SQUAT,
+)
 HIP_EXTENSION = Exercise(
     "45 Degree Hip Extension",
     "http://link.com",
