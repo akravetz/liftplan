@@ -1,7 +1,9 @@
-from typing import Any
 import os.path
-from core import models
+from typing import Any
 from jinja2 import Template
+
+from core import models
+from .output import OutputFormat, Chapter, Page
 
 
 def _render(template_file: str, **kwargs: Any) -> str:
@@ -66,17 +68,35 @@ def generate_day_table(day: models.Day) -> str:
     )
 
 
-def program_to_html(program: models.Program) -> str:
-    week_index = 0
+def week_summary_html(block: models.Block, week_index) -> str:
+    page_html = _render(
+        "week_summary.html",
+        block=block,
+        week_index=week_index,
+        generate_day_table=generate_day_table,
+    )
+    return page_html
 
-    for block in program.blocks:
-        for _ in range(block.n_weeks):
-            week_index += 1
-            page_html = _render(
-                "week_summary.html",
-                block=block,
-                week_index=week_index,
-                generate_day_table=generate_day_table,
-            )
-            return page_html
-    return ""
+
+class HtmlOutput(OutputFormat):
+    def __init__(self, program: models.Program):
+        super().__init__(program)
+        self.process()
+
+    def process(self) -> None:
+        week_index = 0
+        for block in self.program.blocks:
+            for _ in range(block.n_weeks):
+                week_index += 1
+                chap = Chapter()
+                summary_page = Page(
+                    week_summary_html(block, week_index).encode("utf-8")
+                )
+                chap.add_pages([summary_page])
+                self.add_chapter(chap)
+
+    def format_name(self) -> str:
+        return "html"
+
+    def output(self, filename: str, **kwargs) -> None:
+        pass

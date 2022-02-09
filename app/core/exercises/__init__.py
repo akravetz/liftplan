@@ -1,4 +1,5 @@
 from .exercises import (
+    BARBELL_HIP_THRUST,
     HIP_EXTENSION,
     SLDL,
     CABLE_CURL,

@@ -9,10 +9,16 @@ PHONY: deps
 deps:
 	@pip-sync requirements.txt dev-requirements.txt
 
-.PHONY: lint
-lint:
+.PHONY: pylint
+pylint:
 	@-PYTHONPATH=app python -m pylint app/core
+
+.PHONY: mypy
+mypy:
 	@-MYPYPATH=app python -m mypy app
+
+.PHONY: lint
+lint: pylint mypy
 
 run:
 	@PYTHONPATH=app python app/cmd.py

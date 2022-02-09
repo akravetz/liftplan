@@ -1,1 +1,2 @@
-from .html import program_to_html
+from .html import HtmlOutput
+from .output import OutputFormat
