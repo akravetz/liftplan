@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 from abc import ABC, abstractmethod
 from enum import IntEnum, Enum, auto
@@ -73,7 +73,7 @@ class Day:
     name: str
     note: str
     day_offset: int  # day 0, 1,...n etc
-    exercises: list[ExerciseProgram]
+    exercises: list[ExerciseProgram] = field(default_factory=list)
     finisher: Optional[Finisher] = None
 
 

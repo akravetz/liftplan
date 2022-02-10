@@ -1,9 +1,21 @@
-import os.path
+import os
+import shutil
+from pathlib import Path
 from typing import Any
 from jinja2 import Template
 
 from core import models
 from .output import OutputFormat, Chapter, Page
+
+_DAY_OF_WEEK_INDEX = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+]
 
 
 def _render(template_file: str, **kwargs: Any) -> str:
@@ -13,16 +25,9 @@ def _render(template_file: str, **kwargs: Any) -> str:
         return Template(f_obj.read()).render(kwargs)
 
 
-def generate_day_table(day: models.Day) -> str:
-    offset_to_dow = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-    ]
+def generate_day_table(
+    day: models.Day, gen_header: bool = True, html_class: str = "exercises"
+) -> str:
     # count sets per muscle group, to create header table
     exercises = day.exercises
     set_count = {name: 0 for name in models.MuscleGroup.__members__}
@@ -35,9 +40,8 @@ def generate_day_table(day: models.Day) -> str:
         for set_ in es_.sets:
             if isinstance(set_.intensifier, models.Dropset):
                 set_count[musc_group_name] += set_.intensifier.n_drops
-            elif isinstance(set_.intensifier, models.Dropset):
-                # TODO: fix this
-                set_count[musc_group_name] += 0
+            elif isinstance(set_.intensifier, models.Myorep):
+                set_count[musc_group_name] += 3
 
     # we want to create a table that has two muscle groups per row with a
     # spacing column between them
@@ -61,10 +65,12 @@ def generate_day_table(day: models.Day) -> str:
     return _render(
         "exercise_table.html",
         day=day,
-        day_of_week=offset_to_dow[day.day_offset],
+        day_of_week=_DAY_OF_WEEK_INDEX[day.day_offset],
         exercise_groups=all_exercises,
         total_exercises=total_exercises,
         total_sets=total_sets,
+        gen_header=gen_header,
+        html_class=html_class,
     )
 
 
@@ -73,6 +79,18 @@ def week_summary_html(block: models.Block, week_index) -> str:
         "week_summary.html",
         block=block,
         week_index=week_index,
+        generate_day_table=generate_day_table,
+    )
+    return page_html
+
+
+def day_html(block: models.Block, week_index, day: models.Day) -> str:
+    page_html = _render(
+        "day.html",
+        block=block,
+        week_index=week_index,
+        day_of_week=_DAY_OF_WEEK_INDEX[day.day_offset],
+        day=day,
         generate_day_table=generate_day_table,
     )
     return page_html
@@ -92,11 +110,32 @@ class HtmlOutput(OutputFormat):
                 summary_page = Page(
                     week_summary_html(block, week_index).encode("utf-8")
                 )
-                chap.add_pages([summary_page])
+                chap.add_page(summary_page)
+                pages = [
+                    Page(day_html(block, week_index, day).encode("utf-8"))
+                    for day in block.days
+                    if len(day.exercises) > 0
+                ]
+                chap.add_pages(pages)
+
                 self.add_chapter(chap)
 
     def format_name(self) -> str:
         return "html"
 
     def output(self, filename: str, **kwargs) -> None:
-        pass
+        overwrite = kwargs.get("overwrite", False)
+        base_path = Path(filename)
+        base_path.mkdir(exist_ok=overwrite)
+        # write the chapter output
+        for chap_idx, chapter in enumerate(self.chapters):
+            chapter_path = base_path.joinpath(f"chapter{chap_idx}")
+            chapter_path.mkdir(exist_ok=overwrite)
+            for page_idx, page in enumerate(chapter.pages):
+                page_path = chapter_path.joinpath(f"page{page_idx}.html")
+                with page_path.open("wb") as f_obj:
+                    f_obj.write(page.content)
+        # write the static files as necessary
+        static_from_path = Path(__file__).parent.absolute().joinpath("html_static")
+        static_to_path = base_path.joinpath("static")
+        shutil.copytree(static_from_path, static_to_path, dirs_exist_ok=overwrite)

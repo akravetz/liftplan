@@ -9,7 +9,7 @@ class Myorep(Intensifier):
 
     def description(self):
         return (
-            "perform a set to 2-3RIR, then perform sets "
+            "Perform a set to 2-3RIR, then perform sets "
             + "of 5 reps with 5 second rest in between.  "
             + " Once you can no longer perform 5 reps, stop"
         )
@@ -24,8 +24,8 @@ class Dropset(Intensifier):
 
     def description(self):
         return (
-            "perform working set, drop the weight 20%"
-            + f"and perform another set to failure.  Do this {self.n_drops} times."
+            "Perform working set, drop the weight 20%"
+            + f"and perform another set to failure.  Do this {self.n_drops} time{'s' if self.n_drops > 1 else ''}."
         )
 
 
@@ -37,7 +37,7 @@ class Partial(Intensifier):
         return "partial set"
 
     def description(self):
-        return f"perform a set of {self.n_reps} partials"
+        return f"Perform a set of {self.n_reps} partials"
 
 
 class IsoHold(Intensifier):

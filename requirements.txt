@@ -10,3 +10,5 @@ markdown2==2.4.2
     # via -r requirements.in
 markupsafe==2.0.1
     # via jinja2
+pypdf2==1.26.0
+    # via -r requirements.in

@@ -50,13 +50,13 @@ CABLE_ROPE_PULLOVER = Exercise(
 )
 DELT_Y_RAISE = Exercise(
     "Lateral Raise - Y Cable",
-    "https://exrx.net/WeightExercises/DeltoidLateral/CBYRaise",
+    "https://www.youtube.com/watch?v=XGqH9EAMmUc&t=1250s",
     MuscleGroup.SHOULDERS,
     ExerciseCategory.LATERAL_RAISE,
 )
 DB_PRESS = Exercise(
     "Press - Flat, DB",
-    "http://link.com",
+    "https://www.youtube.com/watch?v=j8Z1nE7-5Ic",
     MuscleGroup.CHEST,
     ExerciseCategory.PRESS,
 )
@@ -110,7 +110,7 @@ LEG_EXT = Exercise(
 )
 LEG_PRESS = Exercise(
     "Leg Press",
-    "https://exrx.net/WeightExercises/Quadriceps/SL45LegPress",
+    "https://www.youtube.com/watch?v=VqrZi5JmPp0",
     MuscleGroup.LEGS,
     ExerciseCategory.SQUAT,
 )
@@ -122,7 +122,7 @@ CUFF_LAT_RAISE = Exercise(
 )
 CHEST_SUPPORTED_ROW = Exercise(
     "Row - Chest Supported, DB",
-    "http://link.com",
+    "https://www.youtube.com/watch?v=IRmjIkHFj3w",
     MuscleGroup.BACK,
     ExerciseCategory.ROW,
 )

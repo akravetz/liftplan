@@ -84,6 +84,11 @@ PPL_V2 = models.Program(
                         EP(ex.SEATED_CALF_RAISE, [S(10, 12)] * 3),
                     ],
                 ),
+                D(
+                    "Rest",
+                    "",
+                    6,
+                ),
             ],
         ),
         models.Block(
@@ -248,6 +253,11 @@ PPL_V2 = models.Program(
                             ],
                         ),
                     ],
+                ),
+                D(
+                    "Rest",
+                    "",
+                    6,
                 ),
             ],
         ),
@@ -455,6 +465,11 @@ PPL_V2 = models.Program(
                             ],
                         ),
                     ],
+                ),
+                D(
+                    "Rest",
+                    "",
+                    6,
                 ),
             ],
         ),

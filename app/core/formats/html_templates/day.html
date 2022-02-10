@@ -1,0 +1,36 @@
+<html>
+	<meta charset="UTF-8">
+  <head>
+		<title>Week {{ week_index }} - {{ day_of_week }}</title>
+    <link rel="stylesheet" href="../static/style.css">
+  </head>
+  <body>
+    <div class="main">
+      <div class="header-day">
+				<p class="h3">Week {{ week_index }} - {{ day_of_week }} ({{ day.name }})</p>
+				<div style="width: 450px">
+{{ generate_day_table(day, gen_header=False, html_class='day-exercises') }}
+				</div>
+      </div>
+      <div class="content">
+				<div style="width: 100%">
+					{% for ex_program in day.exercises %}
+					<h4>{{ loop.index }}/ {{ex_program.exercise.muscle_group.name}} | {{ ex_program.exercise.name }}</h4>
+					{% for set in ex_program.sets %}
+						Set {{ loop.index }}: {{set.rep_range_low}} - {{set.rep_range_high}} reps.
+						{% if set.intensifier %}
+							{{set.intensifier.description()}}
+						{% endif %}
+						<br>
+
+					{% endfor %}
+					<p class="form-tip">&#128250; Form tip: <a href="{{ex_program.exercise.execution_video_link}}">click here</a></p>
+					<svg height="10" viewPort="10 800" class="footer" xmlns="http://www.w3.org/2000/svg" style="display: block; margin:auto;">
+						<line x1="5" y1="5" x2="800" y2="5" />
+					</svg>
+					{% endfor %}
+				</div>
+      </div>
+    </div>
+  </body>
+</html>

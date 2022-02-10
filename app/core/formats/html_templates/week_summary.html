@@ -1,7 +1,8 @@
 <html>
+	<meta charset="UTF-8">
   <head>
-    <title>testing 123</title>
-    <link rel="stylesheet" href="static/style.css">
+		<title>Week {{ week_index }}</title>
+    <link rel="stylesheet" href="../static/style.css">
   </head>
   <body>
     <div class="main">
@@ -12,7 +13,7 @@
       <div class="content">
         <div class="two-col">
 					{% for day in block.days %}
-{{ generate_day_table(day) }}
+{{ generate_day_table(day, gen_header=True) }}
 					{% if loop.index == 3 %}
 				</div>
         <div class="two-col">

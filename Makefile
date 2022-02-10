@@ -20,8 +20,10 @@ mypy:
 .PHONY: lint
 lint: pylint mypy
 
+.PHONY: run
 run:
-	@PYTHONPATH=app python app/cmd.py
+	@PYTHONPATH=app python app/cmd.py --html
+	@PYTHONPATH=app python app/cmd.py --pdf
 
 .PHONY: clean
 clean: ## Resets development environment.
@@ -48,3 +50,14 @@ help: ## Show this help message.
 	@echo
 	@echo 'options:'
 	@echo 'use USE_DOCKER=true to run target in a docker container'
+
+.PHONY: pdf
+pdf:
+	@docker container run -it --rm -v /home/akravetz/code:/usr/src/app/src --cap-add=SYS_ADMIN zenika/alpine-chrome:with-puppeteer node src/pdf/script.js
+
+.PHONY: collate
+collate:
+	@PYTHONPATH=app python app/cmd.py --collate
+
+.PHONY: e2e
+e2e: run pdf collate
