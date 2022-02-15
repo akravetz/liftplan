@@ -160,7 +160,7 @@ PEC_DEC = Exercise(
     "Fly - Pec Dec", "http://link.com", MuscleGroup.CHEST, ExerciseCategory.FLY
 )
 REVERSE_PEC_DEC = Exercise(
-    "Reverse Pec DEc", "http://link.com", MuscleGroup.SHOULDERS, ExerciseCategory.ROW
+    "Reverse Pec Dec", "http://link.com", MuscleGroup.SHOULDERS, ExerciseCategory.ROW
 )
 CABLE_FLY = Exercise(
     "Fly - Roller, Cable", "http://link.com", MuscleGroup.CHEST, ExerciseCategory.FLY

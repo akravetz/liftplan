@@ -5,6 +5,7 @@ import argparse
 from typing import Any
 
 from jinja2 import Template
+from PyPDF2 import PdfFileMerger
 
 from core.programs import PPL_V2
 from core.formats import HtmlOutput
@@ -49,6 +50,15 @@ def html_to_pdf(base_dir, html_dir, pdf_dir):
         f.write(script_content)
 
 
+def merge_pdfs(base_dir, pdf_dir):
+    pdf_paths = sorted(glob.glob(f"{base_dir}/{pdf_dir}/*.pdf"))
+    merger = PdfFileMerger()
+    for page in pdf_paths:
+        merger.append(page)
+    with open(f"{base_dir}/{pdf_dir}/output.pdf", "wb") as f_obj:
+        merger.write(f_obj)
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="lift generator")
     parser.add_argument(
@@ -81,7 +91,7 @@ def main():
     if args.pdf:
         html_to_pdf(common_base, HTML_OUT_DIR, pdf_out_path)
     if args.collate:
-        pass
+        merge_pdfs(common_base, pdf_out_path)
 
 
 if __name__ == "__main__":

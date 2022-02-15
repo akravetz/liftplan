@@ -129,10 +129,10 @@ class HtmlOutput(OutputFormat):
         base_path.mkdir(exist_ok=overwrite)
         # write the chapter output
         for chap_idx, chapter in enumerate(self.chapters):
-            chapter_path = base_path.joinpath(f"chapter{chap_idx}")
+            chapter_path = base_path.joinpath(f"chapter{chap_idx:02d}")
             chapter_path.mkdir(exist_ok=overwrite)
             for page_idx, page in enumerate(chapter.pages):
-                page_path = chapter_path.joinpath(f"page{page_idx}.html")
+                page_path = chapter_path.joinpath(f"page{page_idx:02d}.html")
                 with page_path.open("wb") as f_obj:
                     f_obj.write(page.content)
         # write the static files as necessary
